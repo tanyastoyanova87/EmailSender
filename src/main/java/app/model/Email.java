@@ -29,6 +29,9 @@ public class Email {
     private String body;
 
     @Column(nullable = false)
+    private String sender;
+
+    @Column(nullable = false)
     private LocalDateTime createdOn;
 
     @Column(nullable = false)

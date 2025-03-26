@@ -23,15 +23,17 @@ public class EmailService {
 
     public Email sendEmail(EmailRequest emailRequest) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(emailRequest.getContactInfo());
+        mailMessage.setTo(emailRequest.getEmail());
         mailMessage.setSubject(emailRequest.getSubject());
         mailMessage.setText(emailRequest.getBody());
+        mailMessage.setFrom(emailRequest.getSender());
 
         Email email = Email.builder()
                 .userId(emailRequest.getUserId())
                 .subject(emailRequest.getSubject())
                 .body(emailRequest.getBody())
                 .createdOn(LocalDateTime.now())
+                .sender(emailRequest.getSender())
                 .build();
 
         try {

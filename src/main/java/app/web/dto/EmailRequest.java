@@ -20,5 +20,8 @@ public class EmailRequest {
     private String body;
 
     @NotBlank
-    private String contactInfo;
+    private String email;
+
+    @NotBlank
+    private String sender;
 }

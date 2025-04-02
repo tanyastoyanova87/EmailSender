@@ -1,5 +1,6 @@
 package app.service;
 
+import app.exception.EmailSendingException;
 import app.model.Email;
 import app.model.EmailStatus;
 import app.repository.EmailRepository;
@@ -9,6 +10,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class EmailService {
@@ -41,8 +44,14 @@ public class EmailService {
             email.setStatus(EmailStatus.SUCCEEDED);
         } catch (Exception e) {
             email.setStatus(EmailStatus.FAILED);
+            emailRepository.save(email);
+            throw new EmailSendingException("Something went wrong. The email cannot be sent.");
         }
 
         return emailRepository.save(email);
+    }
+
+    public List<Email> getAllEmails(UUID userId) {
+        return emailRepository.findAllByUserId(userId);
     }
 }

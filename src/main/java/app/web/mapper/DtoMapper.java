@@ -9,6 +9,7 @@ public class DtoMapper {
 
     public EmailResponse fromEmail(Email email) {
         return EmailResponse.builder()
+                .userId(email.getUserId())
                 .subject(email.getSubject())
                 .createdOn(email.getCreatedOn())
                 .status(email.getStatus())

@@ -1,6 +1,7 @@
 package app.exception;
 
-public class EmailSendingException extends RuntimeException{
+public class EmailSendingException extends RuntimeException {
+
     public EmailSendingException() {
     }
 
